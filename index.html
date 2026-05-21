@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מסע לגיל מצווה – תהליך אישי דרך הטבע | עופרי ולפר</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #4a6830;
+      --green-mid:    #5f8a3a;
+      --green-light:  #8aaa5a;
+      --green-pale:   #d4e6b5;
+      --earth-dark:   #7a5c28;
+      --earth-mid:    #a07840;
+      --earth-light:  #c8a060;
+      --cream:        #f7f2e6;
+      --cream-dark:   #ede4cc;
+      --text-dark:    #2c2a1e;
+      --text-mid:     #4a4535;
+      --white:        #ffffff;
+      --shadow:       rgba(74, 104, 48, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      direction: rtl;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3 { font-family: 'Frank Ruhl Libre', serif; line-height: 1.3; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--green-dark); margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; color: var(--green-dark); margin-bottom: .5rem; }
+    p  { font-size: 1.05rem; color: var(--text-mid); margin-bottom: .8rem; }
+
+    /* ─── LAYOUT HELPERS ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section    { padding: 5rem 0; }
+    .section-alt { background: var(--cream-dark); }
+
+    .section-label {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--earth-mid);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .divider {
+      width: 60px; height: 4px;
+      background: var(--green-light);
+      border-radius: 2px;
+      margin: .8rem 0 2rem;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 100;
+      background: rgba(247,242,230,.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--cream-dark);
+      padding: .8rem 0;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px var(--shadow); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: .8rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      line-height: 1.2;
+    }
+    .nav-logo-text .title-he {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--green-dark);
+    }
+    .nav-logo-text .subtitle-he {
+      font-size: .72rem; color: var(--earth-mid);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .9rem; font-weight: 500;
+      color: var(--text-mid);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green-mid); }
+    .nav-cta {
+      background: var(--green-mid); color: var(--white) !important;
+      padding: .45rem 1.2rem; border-radius: 50px;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--green-dark) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-dark); border-radius: 2px; transition: .3s; }
+    .mobile-menu { display: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(160deg, #2d4a1a 0%, #4a6830 40%, #6b8840 100%);
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse at 20% 80%, rgba(138,170,90,.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(200,160,96,.15) 0%, transparent 50%);
+    }
+    /* Terrain SVG background */
+    .hero-terrain {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      width: 160px; height: 160px;
+      background: rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero-badge svg { width: 110px; height: 110px; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+    .hero-sub {
+      font-size: 1.2rem; color: rgba(255,255,255,.85);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-tag {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: var(--white);
+      padding: .35rem .9rem; border-radius: 50px;
+      font-size: .85rem; backdrop-filter: blur(4px);
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--earth-light); color: var(--white);
+      padding: .8rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      box-shadow: 0 4px 20px rgba(200,160,96,.4);
+      transition: all .25s;
+    }
+    .btn-primary:hover { background: var(--earth-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,160,96,.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 2px solid rgba(255,255,255,.6); color: var(--white);
+      padding: .8rem 2rem; border-radius: 50px;
+      text-decoration: none; font-weight: 500; font-size: 1rem;
+      transition: all .25s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.15); }
+    .hero-card {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    .hero-card-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.3rem; color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .hero-card-items { list-style: none; }
+    .hero-card-items li {
+      color: rgba(255,255,255,.9);
+      font-size: .95rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .hero-card-items li:last-child { border-bottom: none; }
+    .hero-card-items li::before {
+      content: '✦';
+      color: var(--earth-light);
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+    .hero-price-tag {
+      margin-top: 1.5rem;
+      background: var(--earth-light);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+    .hero-price-tag .price-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 2rem; font-weight: 900;
+    }
+    .hero-price-tag .price-sub { font-size: .8rem; opacity: .9; }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.6); font-size: .8rem; z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ─── WHO IS IT FOR ─── */
+    .for-whom-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .for-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 24px var(--shadow);
+      border-right: 4px solid var(--green-light);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .for-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px var(--shadow); }
+    .for-icon {
+      font-size: 2rem; margin-bottom: .8rem;
+    }
+    .for-card h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+    .for-card p { font-size: .95rem; margin: 0; }
+
+    /* ─── WHAT'S INCLUDED ─── */
+    .included-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .included-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px var(--shadow);
+      transition: transform .25s;
+    }
+    .included-item:hover { transform: translateY(-4px); }
+    .included-icon {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--green-pale), var(--cream-dark));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.6rem;
+    }
+    .included-item h3 { font-size: 1rem; margin-bottom: .3rem; }
+    .included-item p { font-size: .88rem; margin: 0; }
+
+    /* ─── 4 MEETINGS ─── */
+    .meetings-timeline {
+      position: relative; margin-top: 3rem;
+    }
+    .meetings-timeline::before {
+      content: '';
+      position: absolute; top: 40px; bottom: 40px;
+      right: 39px; width: 2px;
+      background: linear-gradient(to bottom, var(--green-pale), var(--green-light), var(--green-pale));
+    }
+    .meeting-item {
+      display: flex; gap: 2rem;
+      margin-bottom: 2.5rem;
+      align-items: flex-start;
+    }
+    .meeting-num {
+      flex-shrink: 0;
+      width: 80px; height: 80px;
+      background: var(--green-dark);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Frank Ruhl Libre', serif;
+      box-shadow: 0 4px 20px rgba(74,104,48,.35);
+      position: relative; z-index: 1;
+    }
+    .meeting-num .num { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+    .meeting-num .num-label { font-size: .6rem; opacity: .8; }
+    .meeting-body {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.6rem 2rem;
+      flex: 1;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform .25s;
+    }
+    .meeting-body:hover { transform: translateX(-4px); }
+    .meeting-meta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-bottom: .8rem;
+    }
+    .meeting-meta span {
+      background: var(--cream-dark);
+      color: var(--earth-dark);
+      padding: .2rem .7rem; border-radius: 50px;
+      font-size: .8rem; font-weight: 500;
+    }
+    .meeting-body h3 { font-size: 1.2rem; margin-bottom: .6rem; }
+    .meeting-body ul { padding-right: 1.2rem; }
+    .meeting-body ul li { font-size: .95rem; color: var(--text-mid); margin-bottom: .4rem; }
+
+    /* ─── ABOUT ─── */
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-circle {
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-pale) 0%, var(--cream-dark) 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 8px 40px rgba(74,104,48,.2);
+      border: 6px solid var(--green-light);
+    }
+    .about-circle svg { width: 200px; height: 200px; }
+    .about-badge {
+      position: absolute; bottom: 10px; right: 10px;
+      background: var(--earth-light);
+      color: var(--white);
+      border-radius: 12px;
+      padding: .8rem 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(200,160,96,.4);
+    }
+    .about-badge .b-num { font-family: 'Frank Ruhl Libre', serif; font-size: 2rem; font-weight: 900; line-height: 1; }
+    .about-badge .b-text { font-size: .75rem; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0 1.8rem; }
+    .about-tag {
+      background: var(--green-pale);
+      color: var(--green-dark);
+      padding: .3rem .9rem; border-radius: 50px;
+      font-size: .85rem; font-weight: 500;
+    }
+    .contact-strip {
+      background: var(--green-dark);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .contact-strip a {
+      color: var(--white); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      font-weight: 500; transition: opacity .2s;
+    }
+    .contact-strip a:hover { opacity: .75; }
+
+    /* ─── PRICING ─── */
+    .pricing-card {
+      max-width: 680px; margin: 2.5rem auto 0;
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px var(--shadow);
+    }
+    .pricing-header {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: var(--white);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .pricing-header h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.5rem; color: var(--white); margin-bottom: .3rem;
+    }
+    .pricing-amount {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 4rem; font-weight: 900; color: var(--white);
+      line-height: 1;
+    }
+    .pricing-amount span { font-size: 1.8rem; }
+    .pricing-note { font-size: .9rem; opacity: .8; margin-top: .3rem; }
+    .pricing-body { padding: 2rem 2.5rem; }
+    .pricing-items { list-style: none; margin-bottom: 2rem; }
+    .pricing-items li {
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      display: flex; align-items: center; gap: .8rem;
+      font-size: .98rem; color: var(--text-mid);
+    }
+    .pricing-items li:last-child { border-bottom: none; }
+    .pricing-items li .check {
+      width: 22px; height: 22px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green-dark); font-size: .75rem; flex-shrink: 0;
+    }
+    .installment-note {
+      background: var(--cream-dark);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: .8rem;
+      font-size: .9rem; color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-cta {
+      display: block; width: 100%; text-align: center;
+      background: var(--earth-light); color: var(--white);
+      padding: 1rem; border-radius: 12px;
+      text-decoration: none; font-weight: 700; font-size: 1.05rem;
+      transition: background .25s;
+    }
+    .pricing-cta:hover { background: var(--earth-dark); }
+
+    /* ─── CONTACT SECTION ─── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start; margin-top: 2rem;
+    }
+    .contact-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 24px var(--shadow);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block; font-size: .88rem; font-weight: 600;
+      color: var(--green-dark); margin-bottom: .4rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: 'Heebo', sans-serif;
+      font-size: .95rem;
+      color: var(--text-dark);
+      background: var(--cream);
+      transition: border-color .2s;
+      direction: rtl;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { outline: none; border-color: var(--green-light); }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .form-submit {
+      width: 100%;
+      background: var(--green-dark); color: var(--white);
+      border: none; padding: 1rem;
+      border-radius: 12px; font-family: 'Heebo', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: background .25s, transform .2s;
+    }
+    .form-submit:hover { background: var(--green-mid); transform: translateY(-2px); }
+    .contact-info-box {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .contact-info-item {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: 0 2px 16px var(--shadow);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .contact-info-icon {
+      width: 48px; height: 48px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .contact-info-text .label { font-size: .8rem; color: var(--earth-mid); font-weight: 600; }
+    .contact-info-text .value {
+      font-size: 1rem; font-weight: 600;
+      color: var(--text-dark); text-decoration: none;
+    }
+    .contact-info-text a.value:hover { color: var(--green-mid); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.8);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    footer .footer-logo {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.3rem; color: var(--white); font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    footer .footer-sub { font-size: .85rem; margin-bottom: 1rem; }
+    footer .footer-divider { width: 40px; height: 2px; background: var(--green-light); margin: 1rem auto; border-radius: 1px; }
+    footer .footer-copy { font-size: .8rem; opacity: .6; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-visual { order: -1; }
+      .meetings-timeline::before { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu {
+        display: none; flex-direction: column;
+        position: fixed; top: 64px; right: 0; left: 0;
+        background: var(--cream); padding: 1.5rem;
+        box-shadow: 0 8px 24px var(--shadow);
+        z-index: 99;
+        gap: 1rem;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a {
+        text-decoration: none; font-size: 1rem; font-weight: 500;
+        color: var(--text-dark); padding: .5rem 0;
+        border-bottom: 1px solid var(--cream-dark);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 { font-size: 2rem; }
+      .pricing-card { border-radius: 16px; }
+      .pricing-body, .pricing-header { padding: 1.5rem; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <!-- Logo SVG -->
+      <svg class="nav-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#4a6830" stroke="#8aaa5a" stroke-width="2"/>
+        <!-- Tree -->
+        <ellipse cx="50" cy="22" rx="14" ry="12" fill="#8aaa5a"/>
+        <ellipse cx="50" cy="28" rx="18" ry="14" fill="#6b8840"/>
+        <rect x="47" y="38" width="6" height="10" fill="#7a5c28"/>
+        <!-- Path -->
+        <path d="M30 75 Q50 60 70 75" stroke="#c8a060" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Guide figure -->
+        <circle cx="35" cy="53" r="4" fill="#f7f2e6"/>
+        <line x1="35" y1="57" x2="35" y2="67" stroke="#f7f2e6" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="35" y1="60" x2="30" y2="64" stroke="#f7f2e6" stroke-width="2" stroke-linecap="round"/>
+        <line x1="35" y1="67" x2="31" y2="73" stroke="#f7f2e6" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="35" y1="67" x2="39" y2="73" stroke="#f7f2e6" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Staff -->
+        <line x1="30" y1="54" x2="26" y2="68" stroke="#c8a060" stroke-width="2" stroke-linecap="round"/>
+        <!-- Following figures -->
+        <circle cx="48" cy="58" r="3" fill="rgba(247,242,230,.8)"/>
+        <line x1="48" y1="61" x2="48" y2="68" stroke="rgba(247,242,230,.8)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="48" y1="68" x2="45" y2="73" stroke="rgba(247,242,230,.8)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="48" y1="68" x2="51" y2="73" stroke="rgba(247,242,230,.8)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="60" cy="60" r="3" fill="rgba(247,242,230,.6)"/>
+        <line x1="60" y1="63" x2="60" y2="70" stroke="rgba(247,242,230,.6)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="60" y1="70" x2="57" y2="75" stroke="rgba(247,242,230,.6)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="60" y1="70" x2="63" y2="75" stroke="rgba(247,242,230,.6)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="nav-logo-text">
+        <div class="title-he">מסע לגיל מצווה</div>
+        <div class="subtitle-he">תהליך אישי דרך הטבע</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#for-whom">למי זה מתאים?</a></li>
+      <li><a href="#journey">המסע</a></li>
+      <li><a href="#meetings">4 המפגשים</a></li>
+      <li><a href="#about">מי אני?</a></li>
+      <li><a href="#pricing">מחיר</a></li>
+      <li><a href="#contact" class="nav-cta">צרו קשר</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#for-whom" onclick="closeMenu()">למי זה מתאים?</a>
+  <a href="#journey" onclick="closeMenu()">המסע</a>
+  <a href="#meetings" onclick="closeMenu()">4 המפגשים</a>
+  <a href="#about" onclick="closeMenu()">מי אני?</a>
+  <a href="#pricing" onclick="closeMenu()">מחיר</a>
+  <a href="#contact" onclick="closeMenu()">צרו קשר</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <!-- Mountain terrain background -->
+  <svg class="hero-terrain" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none">
+    <path d="M0,160 L120,80 L240,130 L360,50 L480,110 L600,40 L720,100 L840,30 L960,90 L1080,20 L1200,80 L1320,50 L1440,70 L1440,200 L0,200 Z" fill="rgba(212,230,181,.15)"/>
+    <path d="M0,180 L180,100 L360,150 L540,80 L720,140 L900,60 L1080,120 L1260,70 L1440,110 L1440,200 L0,200 Z" fill="rgba(247,242,230,.08)"/>
+    <path d="M0,200 L240,140 L480,170 L720,120 L960,160 L1200,130 L1440,150 L1440,200 Z" fill="rgba(247,242,230,.2)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">
+        <!-- Large badge SVG -->
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tree -->
+          <ellipse cx="100" cy="50" rx="32" ry="28" fill="rgba(138,170,90,.7)"/>
+          <ellipse cx="100" cy="62" rx="42" ry="32" fill="rgba(107,136,64,.8)"/>
+          <rect x="93" y="88" width="14" height="22" fill="rgba(200,160,96,.8)"/>
+          <!-- Path winding -->
+          <path d="M50 170 Q100 140 150 170" stroke="rgba(200,160,96,.7)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Guide -->
+          <circle cx="65" cy="108" r="10" fill="rgba(247,242,230,.9)"/>
+          <line x1="65" y1="118" x2="65" y2="148" stroke="rgba(247,242,230,.9)" stroke-width="5" stroke-linecap="round"/>
+          <line x1="65" y1="128" x2="50" y2="140" stroke="rgba(247,242,230,.9)" stroke-width="4" stroke-linecap="round"/>
+          <!-- Staff -->
+          <line x1="55" y1="112" x2="44" y2="152" stroke="rgba(200,160,96,.9)" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Followers -->
+          <circle cx="95" cy="118" r="8" fill="rgba(247,242,230,.75)"/>
+          <line x1="95" y1="126" x2="95" y2="150" stroke="rgba(247,242,230,.75)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="120" cy="122" r="7" fill="rgba(247,242,230,.6)"/>
+          <line x1="120" y1="129" x2="120" y2="152" stroke="rgba(247,242,230,.6)" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="142" cy="126" r="6" fill="rgba(247,242,230,.45)"/>
+          <line x1="142" y1="132" x2="142" y2="154" stroke="rgba(247,242,230,.45)" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1>מסע לגיל מצווה<br/>תהליך אישי דרך הטבע</h1>
+      <p class="hero-sub">בר/בת מצווה זה הרבה מעבר לטקס — צעד מהמשמעותי בדרך לבגרות.<br/>בואו להפוך את הרגע הזה למסע אמיתי, אישי ומשפחתי.</p>
+
+      <div class="hero-tags">
+        <span class="hero-tag">🌿 בטבע</span>
+        <span class="hero-tag">👨‍👩‍👧 עם המשפחה</span>
+        <span class="hero-tag">🧭 הובלה אישית</span>
+        <span class="hero-tag">💪 עצמאות וביטחון</span>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          <span>🌱</span> אני רוצה לשמוע עוד
+        </a>
+        <a href="#journey" class="btn-secondary">
+          <span>↓</span> מה כולל המסע?
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-title">📦 מה מקבלים במסע?</div>
+      <ul class="hero-card-items">
+        <li>4 מפגשים אישיים עם המשפחה</li>
+        <li>ליווי אישי לאורך כל התהליך</li>
+        <li>חניכה והכנה לבגרות</li>
+        <li>לימוד והתנסות בטבע</li>
+        <li>טיול שבו הילד מוביל</li>
+        <li>עצמאות, ביטחון עצמי, גאווה</li>
+        <li>חיבור משפחתי עמוק</li>
+      </ul>
+      <div class="hero-price-tag">
+        <div class="price-num">2,900 ₪</div>
+        <div class="price-sub">ניתן לפרוס ל-3 תשלומים</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>גללו למטה</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══ FOR WHOM ═══ -->
+<section class="section" id="for-whom">
+  <div class="container">
+    <span class="section-label fade-in">למי זה מתאים?</span>
+    <h2 class="fade-in">אולי זה בדיוק מה שחיפשתם</h2>
+    <div class="divider fade-in"></div>
+
+    <div class="for-whom-grid">
+      <div class="for-card fade-in">
+        <div class="for-icon">🔍</div>
+        <h3>מחפשים שנה ייחודית</h3>
+        <p>רוצים להפוך את שנת המצווה לחוויה משמעותית — ולא לירוע חד פעמי של טקס וחגיגה.</p>
+      </div>
+      <div class="for-card fade-in">
+        <div class="for-icon">🌱</div>
+        <h3>מאמינים בכוח הטבע</h3>
+        <p>מאמינים שהטבע יכול לתת לילד מרחב לבטא את עצמו, להתנגד ולהוביל אחרים.</p>
+      </div>
+      <div class="for-card fade-in">
+        <div class="for-icon">💪</div>
+        <h3>רוצים שהילד יצמח</h3>
+        <p>רוצים לתת לילדכם חווית עצמאות, ביטחון עצמי וחוש אחריות לקראת הבגרות.</p>
+      </div>
+      <div class="for-card fade-in">
+        <div class="for-icon">👨‍👩‍👧‍👦</div>
+        <h3>רוצים חיבור משפחתי</h3>
+        <p>מחפשים הובלת דרך שתסייע לכל בני המשפחה — ילד, הורים ואחים — ללכת יחד בדרך.</p>
+      </div>
+      <div class="for-card fade-in">
+        <div class="for-icon">🧭</div>
+        <h3>מחפשים הדרכה מסולול</h3>
+        <p>מבינים שהטבע יכול להיות מסגרת ומדריכה — וצריכים מישהו שיכיר ויוביל אתכם.</p>
+      </div>
+      <div class="for-card fade-in">
+        <div class="for-icon">🎯</div>
+        <h3>רוצים שיישאר משהו</h3>
+        <p>מעוניינים שמסע בר/בת המצווה ישאיר בילד כלים, זיכרונות ויכולות לכל החיים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ WHAT'S INCLUDED ═══ -->
+<section class="section section-alt" id="journey">
+  <div class="container">
+    <span class="section-label fade-in">מה כולל המסע?</span>
+    <h2 class="fade-in">תהליך שלם — מההתחלה ועד לטיול</h2>
+    <div class="divider fade-in"></div>
+
+    <div class="included-grid">
+      <div class="included-item fade-in">
+        <div class="included-icon">🤝</div>
+        <h3>4 מפגשים אישיים</h3>
+        <p>עם הילד ועם המשפחה, בבית ובטבע</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">🌿</div>
+        <h3>חיבור לטבע</h3>
+        <p>הכרת הסביבה, צמחים, בעלי חיים ונופים</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">📖</div>
+        <h3>לימוד והעמקה</h3>
+        <p>סיפורי שביל, מפות, ניווט ונקודות עניין</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">👣</div>
+        <h3>הולכה מול קל</h3>
+        <p>תרגול הליכה שקטה, ממוקדת ומתחשבת בסביבה</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">🗺️</div>
+        <h3>תכנון טיול</h3>
+        <p>הילד מתכנן את הטיול ויוצר תחנות משלו</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">🌟</div>
+        <h3>הובלה עצמאית</h3>
+        <p>הילד מוביל את כל הטיול מתחילתו ועד סופו</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">🏕️</div>
+        <h3>חניה בטבע</h3>
+        <p>התנסות בהליכה לילית וחוויות שטח</p>
+      </div>
+      <div class="included-item fade-in">
+        <div class="included-icon">💛</div>
+        <h3>חיבור משפחתי</h3>
+        <p>הורים וילד — יחד על השביל, יחד בצמיחה</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 4 MEETINGS ═══ -->
+<section class="section" id="meetings">
+  <div class="container">
+    <span class="section-label fade-in">מבנה התהליך</span>
+    <h2 class="fade-in">4 מפגשים — ודרך שלמה</h2>
+    <div class="divider fade-in"></div>
+
+    <div class="meetings-timeline">
+
+      <div class="meeting-item fade-in">
+        <div class="meeting-num">
+          <span class="num">1</span>
+          <span class="num-label">מפגש</span>
+        </div>
+        <div class="meeting-body">
+          <div class="meeting-meta">
+            <span>📍 בבית המשפחה</span>
+            <span>👨‍👩‍👧 כולל הורים</span>
+          </div>
+          <h3>הכרות וחיבור</h3>
+          <ul>
+            <li>הכרות עם כל בני המשפחה ובניית אמון</li>
+            <li>שיחה על משמעות גיל המצווה עבור הילד</li>
+            <li>מה הילד רוצה ללמוד ולהשיג במסע?</li>
+            <li>מה תפקיד ההורים — ואיך הם רוצים לתמוך?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meeting-item fade-in">
+        <div class="meeting-num">
+          <span class="num">2</span>
+          <span class="num-label">מפגש</span>
+        </div>
+        <div class="meeting-body">
+          <div class="meeting-meta">
+            <span>📍 בטבע או בבית</span>
+            <span>📚 לימוד והעמקה</span>
+          </div>
+          <h3>לימוד, חקר והעמקה</h3>
+          <ul>
+            <li>היכרות עם הסביבה: היסטוריה, טבע, מפות, סיפורים</li>
+            <li>העשרת ידע ממקורות שונים: אקולוגיה, ציונות, טבע, מורשת</li>
+            <li>בניית חזון של גיל המצווה — ערכים, מורשת משפחתית ואישית</li>
+            <li>תכנון ראשוני של הטיול: מסלול, עצירות ותוכן</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meeting-item fade-in">
+        <div class="meeting-num">
+          <span class="num">3</span>
+          <span class="num-label">מפגש</span>
+        </div>
+        <div class="meeting-body">
+          <div class="meeting-meta">
+            <span>🥾 יום טיול</span>
+            <span>🧭 ניסיון ראשון</span>
+          </div>
+          <h3>יום טיול — נקודת הציון</h3>
+          <ul>
+            <li>אופרי מכינה מראש את המסלול עבור הילד</li>
+            <li>הילד מוביל את הטיול תוך שימוש במה שלמד</li>
+            <li>חיבול הסיפורים, העצירות ומדריך התוכן</li>
+            <li>תרגול: איך אני מרגיש כמנהיג? מה עובד ומה אני משפר?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="meeting-item fade-in">
+        <div class="meeting-num" style="background: var(--earth-mid);">
+          <span class="num">4</span>
+          <span class="num-label">מפגש</span>
+        </div>
+        <div class="meeting-body" style="border-right-color: var(--earth-light);">
+          <div class="meeting-meta">
+            <span>🌄 יום טיול שלם</span>
+            <span>⭐ הילד מוביל!</span>
+          </div>
+          <h3>הילד מוביל — הטיול הגדול</h3>
+          <ul>
+            <li>הילד מוביל את המסלול כולו מהתחלה ועד הסוף</li>
+            <li>המשפחה — הורים ואחים — הם המטיילים</li>
+            <li>הטיול כולל: הולכה שקטה, ניווט, תחנות ותוכן</li>
+            <li>חגיגה — ראיית הצמיחה, הביטחון והמנהיגות של הילד</li>
+          </ul>
+          <p style="margin-top:.8rem; font-size:.9rem; color:var(--earth-dark); font-weight:600;">
+            🌟 זהו הרגע שכל המסע הכשיר אליו — הילד שלכם מוביל!
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <span class="section-label fade-in">מי אני?</span>
+        <h2 class="fade-in">עופרי ולפר</h2>
+        <div class="divider fade-in"></div>
+
+        <div class="about-tags fade-in">
+          <span class="about-tag">🌿 מדריכת טבע</span>
+          <span class="about-tag">🧠 מרפאה בעיסוק</span>
+          <span class="about-tag">💛 סוציו-אמוציונלית</span>
+          <span class="about-tag">🧭 מוביל שבילים</span>
+        </div>
+
+        <p class="fade-in">
+          מאז שאני זוכרת את עצמי, היציאה לטבע היא הדרך שמחזירה אותי לעצמי. הטבע נותן לי מרחב להיות ללא ריצה שוטפת, מרחב שבו אני יכולה לגוף ולנשום.
+        </p>
+        <p class="fade-in">
+          עם השנים גיליתי שמה שאני מחפשת בטבע — אני יכולה לעזור גם לאחרים למצוא. לפגוש את עצמם מחדש, לגלות כוחות שלא הכירו, ולהוביל את עצמם ואת האנשים שלצידם.
+        </p>
+        <p class="fade-in">
+          כמרפאה בעיסוק עם התמחות סוציו-אמוציונלית, אני עוסקת עמוקות בהבנה של ילדים — מה שמניע אותם, מה מעצור אותם, ואיך הטבע יכול להיות כלי טיפולי ומחנך. יחד — הילד, ואני — נמצא את המסלול שמתאים בדיוק לו.
+        </p>
+
+        <div class="contact-strip fade-in">
+          <a href="tel:0509818816">
+            <span>📞</span> 050-981-8816
+          </a>
+          <a href="mailto:ofrivalfer25@gmail.com">
+            <span>✉️</span> ofrivalfer25@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div class="about-visual fade-in">
+        <div class="about-circle">
+          <!-- Decorative guide SVG -->
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sun -->
+            <circle cx="150" cy="40" r="18" fill="rgba(200,160,96,.4)"/>
+            <line x1="150" y1="16" x2="150" y2="10" stroke="rgba(200,160,96,.5)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="169" y1="21" x2="173" y2="16" stroke="rgba(200,160,96,.5)" stroke-width="2" stroke-linecap="round"/>
+            <line x1="174" y1="40" x2="180" y2="40" stroke="rgba(200,160,96,.5)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Mountains -->
+            <path d="M0,140 L50,60 L100,130 L140,70 L200,140 L200,200 L0,200 Z" fill="rgba(107,136,64,.3)"/>
+            <path d="M0,160 L40,100 L80,150 L120,90 L160,140 L200,100 L200,200 L0,200 Z" fill="rgba(74,104,48,.4)"/>
+            <!-- Trees -->
+            <ellipse cx="30" cy="105" rx="12" ry="10" fill="rgba(90,122,58,.6)"/>
+            <rect x="27" y="112" width="6" height="12" fill="rgba(122,92,40,.5)"/>
+            <ellipse cx="170" cy="95" rx="10" ry="9" fill="rgba(90,122,58,.5)"/>
+            <rect x="167" y="102" width="6" height="10" fill="rgba(122,92,40,.5)"/>
+            <!-- Guide figure (center) -->
+            <circle cx="100" cy="95" r="12" fill="rgba(74,104,48,.7)"/>
+            <line x1="100" y1="107" x2="100" y2="140" stroke="rgba(74,104,48,.7)" stroke-width="6" stroke-linecap="round"/>
+            <line x1="100" y1="118" x2="80" y2="130" stroke="rgba(74,104,48,.7)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="100" y1="118" x2="120" y2="128" stroke="rgba(74,104,48,.7)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="100" y1="140" x2="86" y2="160" stroke="rgba(74,104,48,.7)" stroke-width="5" stroke-linecap="round"/>
+            <line x1="100" y1="140" x2="114" y2="160" stroke="rgba(74,104,48,.7)" stroke-width="5" stroke-linecap="round"/>
+            <!-- Star/sparkle -->
+            <path d="M100 76 L102 82 L108 82 L103 86 L105 92 L100 88 L95 92 L97 86 L92 82 L98 82 Z" fill="rgba(200,160,96,.7)"/>
+          </svg>
+        </div>
+        <div class="about-badge">
+          <div class="b-num">🌿</div>
+          <div class="b-text">מדריכה<br/>ומרפאה</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PRICING ═══ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <span class="section-label fade-in">הצעת מחיר</span>
+    <h2 class="fade-in" style="text-align:center;">מסע לגיל מצווה — חבילה שלמה</h2>
+    <div class="divider fade-in" style="margin: .8rem auto 0;"></div>
+
+    <div class="pricing-card fade-in">
+      <div class="pricing-header">
+        <h3>חבילת המסע המלאה</h3>
+        <div class="pricing-amount"><span>₪</span>2,900</div>
+        <div class="pricing-note">מחיר כולל מע"מ | ניתן לפרוס ל-3 תשלומים</div>
+      </div>
+      <div class="pricing-body">
+        <ul class="pricing-items">
+          <li>
+            <span class="check">✓</span>
+            <span><strong>4 מפגשים אישיים</strong> — כולל ליווי אישי אופרי לאורך כל התהליך</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>הכנת המסלול</strong> — אופרי מכינה ומתאימה את הטיול לכם ולילד</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>לימוד והדרכה</strong> — טבע, סיפורי שביל, ניווט, צמחים וחיות</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>אימון הובלה</strong> — הילד מוביל, מתרגל וצומח</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>הטיול הגדול</strong> — יום שלם שהילד מוביל את כל המשפחה</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span><strong>ליווי סוציו-אמוציונלי</strong> — מרפאה בעיסוק לאורך כל התהליך</span>
+          </li>
+        </ul>
+
+        <div class="installment-note">
+          <span>💳</span>
+          <span>המחיר הוא <strong>2,900 ₪</strong> לכל החבילה. ניתן לפרוס ל-3 תשלומים נוחים. המיקום: בבית המשפחה ובאתרי טבע שנבחר יחד.</span>
+        </div>
+
+        <a href="#contact" class="pricing-cta">אני רוצה להתחיל! 🌱</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <span class="section-label fade-in">צרו קשר</span>
+    <h2 class="fade-in">מוכנים להתחיל את המסע?</h2>
+    <div class="divider fade-in"></div>
+    <p class="fade-in" style="max-width:560px; margin-bottom:0;">
+      השאירו פרטים ואופרי תחזור אליכם בהקדם לשיחת היכרות ראשונית — ללא התחייבות.
+    </p>
+
+    <div class="contact-grid">
+      <div class="contact-form fade-in">
+        <h3 style="margin-bottom:1.5rem;">שלחו הודעה</h3>
+        <form action="https://formspree.io/f/FORMSPREE_ID" method="POST">
+          <input type="hidden" name="_subject" value="פנייה חדשה — מסע לגיל מצווה 🌿" />
+          <input type="hidden" name="_language" value="he" />
+          <div class="form-group">
+            <label>שם מלא *</label>
+            <input type="text" name="שם מלא" placeholder="שם ההורה / המשפחה" required />
+          </div>
+          <div class="form-group">
+            <label>שם הילד/ה *</label>
+            <input type="text" name="שם הילד" placeholder="שם הבר/בת מצווה" required />
+          </div>
+          <div class="form-group">
+            <label>טלפון *</label>
+            <input type="tel" name="טלפון" placeholder="050-000-0000" required />
+          </div>
+          <div class="form-group">
+            <label>אימייל</label>
+            <input type="email" name="_replyto" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>מתי מתוכן אירוע גיל המצווה?</label>
+            <input type="text" name="תאריך אירוע" placeholder="לדוגמה: ספטמבר 2025" />
+          </div>
+          <div class="form-group">
+            <label>ספרו לנו קצת...</label>
+            <textarea name="הודעה" placeholder="מה חשוב לכם? מה הילד/ה אוהב/ת? יש שאלות?"></textarea>
+          </div>
+          <button type="submit" class="form-submit">שלחו הודעה 🌿</button>
+        </form>
+      </div>
+
+      <div class="contact-info-box fade-in">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div class="contact-info-text">
+            <div class="label">טלפון</div>
+            <a href="tel:0509818816" class="value">050-981-8816</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div class="contact-info-text">
+            <div class="label">אימייל</div>
+            <a href="mailto:ofrivalfer25@gmail.com" class="value">ofrivalfer25@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-text">
+            <div class="label">מיקום</div>
+            <span class="value">בבית המשפחה + טבע לפי בחירה</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">⏱️</div>
+          <div class="contact-info-text">
+            <div class="label">זמן תגובה</div>
+            <span class="value">עד 24 שעות</span>
+          </div>
+        </div>
+
+        <!-- Quote card -->
+        <div style="background: linear-gradient(135deg, var(--green-dark), var(--green-mid)); border-radius:16px; padding:2rem; color:white; margin-top:.5rem;">
+          <div style="font-size:2rem; margin-bottom:.8rem; opacity:.7;">"</div>
+          <p style="color:rgba(255,255,255,.9); font-style:italic; margin-bottom:.8rem; font-size:.95rem;">
+            בר/בת מצווה זה הרבה מעבר לטקס — זה צעד מהמשמעותי בדרך לבגרות. בואו להפוך אותו למסע אמיתי.
+          </p>
+          <div style="font-size:.85rem; color:rgba(255,255,255,.65);">— עופרי ולפר</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">מסע לגיל מצווה</div>
+  <div class="footer-sub">תהליך אישי דרך הטבע | עופרי ולפר</div>
+  <div class="footer-divider"></div>
+  <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1rem;">
+    <a href="tel:0509818816" style="color:rgba(255,255,255,.7); text-decoration:none; font-size:.9rem;">📞 050-981-8816</a>
+    <a href="mailto:ofrivalfer25@gmail.com" style="color:rgba(255,255,255,.7); text-decoration:none; font-size:.9rem;">✉️ ofrivalfer25@gmail.com</a>
+  </div>
+  <div class="footer-copy">© 2025 עופרי ולפר | כל הזכויות שמורות</div>
+</footer>
+
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger menu
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✅ ההודעה נשלחה! נחזור אליכם בקרוב';
+    btn.style.background = 'var(--green-dark)';
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>
